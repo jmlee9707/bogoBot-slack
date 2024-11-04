@@ -35,7 +35,7 @@ jobs:
           #   channel-id: ${{ secrets.CHANNEL_ID }}
           channel-id: C07KW7U17MJ
           #   payload: '{"text": "테스트"}'
-          payload: '{"text": "${{ env.DATE }} 데일리보고"}'
+          payload: '{"text": `${${{ env.DATE }} 데일리보고}`}'
 
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
