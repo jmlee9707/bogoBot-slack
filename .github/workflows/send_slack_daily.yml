@@ -27,7 +27,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          channel-id: ${{secrets.CHANNEL_ID}}
+          channel-id: C07KW7U17MJ
           payload: '{"text": "GitHub Action build result"}'
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_WEBHOOK_URL }}
