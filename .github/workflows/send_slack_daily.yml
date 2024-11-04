@@ -2,7 +2,7 @@ name: Send Slack Daily Report
 
 on:
   schedule:
-    - cron: "20 17 * * 1-5"
+    - cron: "24 17 * * 1-5"
 
 jobs:
   send_slack_message:
@@ -10,9 +10,11 @@ jobs:
 
     steps:
       - name: Send Slack message
-        uses: 8398a7/action-slack@v3.16.2
+        uses: 8398a7/action-slack@v3
         with:
-            text : "데일리 보고"
+          payload: { "text": "데일리 보고" }
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           CHANEEL_ID: ${{secrets.CHANNEL_ID}}
+
+        if: always()
