@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: npm install # 의존성 설치
 
-      - name: Run script
+      - name: Send Slack message
         uses: slackapi/slack-github-action@v1.24.0
         with:
           channel-id: ${{secrets.CHANNEL_ID}}
