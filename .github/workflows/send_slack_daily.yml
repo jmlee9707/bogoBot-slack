@@ -2,7 +2,7 @@ name: Send Slack Daily Report
 
 on:
   schedule:
-    - cron: "55 15 * * 1-5"
+    - cron: "56 15 * * 1-5"
 
 jobs:
   send_slack_message:
@@ -27,7 +27,7 @@ jobs:
           const client = new WebClient(process.env.SLACK_BOT_TOKEN);
           const channelId = process.env.CHANNEL_ID;
 
-          const today = new Date();
+          const today = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul', dateStyle: 'full' });
           const year = today.getFullYear();
           const month = String(today.getMonth() + 1).padStart(2, '0');
           const day = String(today.getDate()).padStart(2, '0');
