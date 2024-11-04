@@ -12,7 +12,7 @@ jobs:
       - name: Send Slack message
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          "text": "데일리 보고"
+          payload: { "text": "데일리 보고" }
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           CHANEEL_ID: ${{secrets.CHANNEL_ID}}
