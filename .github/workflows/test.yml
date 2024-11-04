@@ -2,7 +2,7 @@ name: Send Daily Bogo Report
 
 on:
   schedule:
-    - cron: "41 19 * * *"
+    - cron: "45 19 * * *"
 
 jobs:
   send-report:
@@ -24,4 +24,4 @@ jobs:
         env:
           DATABASE_SLACK_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           DATABASE_CHANNEL_ID: ${{ secrets.CHANNEL_ID }} #
-        run: node ./path/to/your/main.js
+        run: node ./src/main.js
