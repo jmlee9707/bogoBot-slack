@@ -29,8 +29,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
-            channel-id: ${{ secrets.CHANNEL_ID }}
-        #   channel-id: C07KW7U17MJ
+          channel-id: ${{ secrets.CHANNEL_ID }}
           payload: '{"text": "${{ env.DATE }} 데일리보고"}'
 
         env:
