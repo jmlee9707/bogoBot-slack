@@ -1,0 +1,47 @@
+name: Send Slack Daily Report
+
+on:
+  schedule:
+    - cron: "0 17 * * 1-5"
+
+jobs:
+  send_slack_message:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Send Slack message
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          CHANEEL_ID: ${{secrets.CHANNEL_ID}}
+        run: |
+          node -e "
+          const { WebClient } = require('@slack/web-api');
+          const client = new WebClient(process.env.SLACK_BOT_TOKEN);
+          const channelId = process.env.CHANNEL_ID;
+
+          const today = new Date();
+          const year = today.getFullYear();
+          const month = String(today.getMonth() + 1).padStart(2, '0');
+          const day = String(today.getDate()).padStart(2, '0');
+          const formattedDate = `${year}-${month}-${day}`;
+
+          client.chat.postMessage({
+            channel: channelId,
+            text: `${formattedDate} 데일리 보고`,
+          })
+          .then(() => console.log('메시지 전송 완료'))
+          .catch((error) => {
+            console.error('오류가 발생했습니다:', error);
+          });
+          "
