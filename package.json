@@ -1,0 +1,20 @@
+{
+  "name": "bogobot",
+  "version": "1.0.0",
+  "description": "give a daily bogo everyday",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm start",
+    "build": "npm build",
+    "test": "npm test",
+    "eject": "npm eject"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/oauth": "^3.0.1",
+    "@slack/web-api": "^7.7.0",
+    "dotenv": "^16.4.5",
+    "node-schedule": "^2.1.1"
+  }
+}
