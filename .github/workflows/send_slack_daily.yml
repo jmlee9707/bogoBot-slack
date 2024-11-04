@@ -2,7 +2,7 @@ name: Send Slack Daily Report
 
 on:
   schedule:
-    - cron: "32 17 * * 1-5"
+    - cron: "46 17 * * 1-5"
 
 jobs:
   send_slack_message:
@@ -12,9 +12,21 @@ jobs:
       - name: Send Slack message
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          payload: { "text": "데일리 보고" }
+          channel-id: ${{secrets.CHANNEL_ID}}
+          payload: |
+            {
+                "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
+                "blocks": [
+                {
+                    "type": "section",
+                    "text": {
+                    "type": "mrkdwn",
+                    "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                    }
+                }
+                ]
+            }
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-          CHANEEL_ID: ${{secrets.CHANNEL_ID}}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_WEBHOOK_URL }}
 
         if: always()
