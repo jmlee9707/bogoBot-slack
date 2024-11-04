@@ -23,22 +23,21 @@ jobs:
       - name: Install dependencies
         run: npm install # 의존성 설치
 
+      - name: Get today's date
+        id: get_date
+        run: |
+          echo "DATE=$(node ./src/calcToday.js)" >> $GITHUB_ENV
+
       - name: notify slack
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          channel-id: ${{ secrets.CHANNEL_ID }}
-          payload: '{"text": "테스트"}'
+          #   channel-id: ${{ secrets.CHANNEL_ID }}
+          channel-id: C07KW7U17MJ
+          #   payload: '{"text": "테스트"}'
+          payload: '{"text": "${{ env.DATE }} 데일리보고"}'
+
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-
-        #   - name: Send Slack message
-        #     uses: slackapi/slack-github-action@v1.24.0
-        #     with:
-        #       channel-id: ${{secrets.CHANNEL_ID}}
-        #       payload: |
-        #         {
-        #             "text": "GitHub Action build result",
-        #         }
 
         if: always()
