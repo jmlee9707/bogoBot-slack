@@ -2,7 +2,7 @@ name: Send Slack Daily Report
 
 on:
   schedule:
-    - cron: "37 19 * * 1-5"
+    - cron: "00 16 * * 1-5"
 
 jobs:
   send_slack_message:
@@ -29,9 +29,8 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
-          #   channel-id: ${{ secrets.CHANNEL_ID }}
-          channel-id: C07KW7U17MJ
-          #   payload: '{"text": "테스트"}'
+            channel-id: ${{ secrets.CHANNEL_ID }}
+        #   channel-id: C07KW7U17MJ
           payload: '{"text": "${{ env.DATE }} 데일리보고"}'
 
         env:
