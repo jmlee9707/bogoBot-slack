@@ -2,7 +2,7 @@ name: Send Slack Daily Report
 
 on:
   schedule:
-    - cron: "0 17 * * 1-5"
+    - cron: "55 15 * * 1-5"
 
 jobs:
   send_slack_message:
@@ -16,9 +16,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18"
-
-      - name: Install dependencies
-        run: npm install
 
       - name: Send Slack message
         env:
@@ -36,9 +33,12 @@ jobs:
           const day = String(today.getDate()).padStart(2, '0');
           const formattedDate = `${year}-${month}-${day}`;
 
+
+          const message = `${formattedDate} 데일리 보고`;
+
           client.chat.postMessage({
             channel: channelId,
-            text: `${formattedDate} 데일리 보고`,
+            text: message,
           })
           .then(() => console.log('메시지 전송 완료'))
           .catch((error) => {
