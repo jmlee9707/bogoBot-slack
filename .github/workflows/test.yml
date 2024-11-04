@@ -1,8 +1,8 @@
-name: Send Daily Bogo Report
+name: Test
 
 on:
   schedule:
-    - cron: "45 19 * * *"
+    - cron: "51 19 * * *"
 
 jobs:
   send-report:
@@ -17,11 +17,9 @@ jobs:
         with:
           node-version: "18"
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Run sendDailyBogo
-        env:
-          DATABASE_SLACK_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-          DATABASE_CHANNEL_ID: ${{ secrets.CHANNEL_ID }} #
-        run: node ./src/main.js
+        # env:
+        # DATABASE_SLACK_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        # DATABASE_CHANNEL_ID: ${{ secrets.CHANNEL_ID }} #
+        # run: node ./src/main.js
+        run: echo "Hi"
