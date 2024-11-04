@@ -1,6 +1,9 @@
 name: Send Slack Daily Report
 
 on:
+  push:
+    branches:
+      - main
   schedule:
     - cron: "46 17 * * 1-5"
 
@@ -16,15 +19,6 @@ jobs:
           payload: |
             {
                 "text": "GitHub Action build result",
-                "blocks": [
-                {
-                    "type": "section",
-                    "text": {
-                    "type": "mrkdwn",
-                    "text": "GitHub Action build result:"
-                    }
-                }
-                ]
             }
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_WEBHOOK_URL }}
