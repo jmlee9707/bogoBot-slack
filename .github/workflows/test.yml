@@ -1,9 +1,11 @@
 name: Test
 
 on:
-  schedule:
-    - cron: "51 19 * * *"
-
+  # schedule:
+  #   - cron: "51 19 * * *"
+  push:
+    paths: "main"
+    branches: ["main"]
 jobs:
   send-report:
     runs-on: ubuntu-latest
