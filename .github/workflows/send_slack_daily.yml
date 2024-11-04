@@ -23,7 +23,8 @@ jobs:
       - name: Install dependencies
         run: npm install # 의존성 설치
 
-      - name: Send custom JSON data to Slack workflow
+      - name: notify slack
+        id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
           channel-id: ${{secrets.CHANNEL_ID}}
