@@ -2,7 +2,7 @@ name: Send Slack Daily Report
 
 on:
   schedule:
-    - cron: "00 16 * * 1-5"
+    - cron: "00 07 * * 1-5"
 
 jobs:
   send_slack_message:
